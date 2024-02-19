@@ -29,6 +29,7 @@ class Keypad(ttk.Frame):
             button = ttk.Button(self, text=i)
             button.grid(row=(key.index(i) // columns), column=(key.index(i) % columns), sticky='nsew')
 
+
             # button.bind('<Button-1>', sticky='nsew')
         #     self.grid_rowconfigure(key.index(i) // columns, weight=1, uniform='row')
         #     self.grid_columnconfigure(key.index(i) % columns, weight=1, uniform='column')
