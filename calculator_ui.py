@@ -4,7 +4,6 @@ from tkinter import ttk
 from keypad import Keypad
 from controller import Controller
 from model import Model
-from controller import Controller
 
 
 class CalculatorUI(tk.Tk):
@@ -136,11 +135,10 @@ class CalculatorUI(tk.Tk):
         elif button_text == 'CLR':
             self.display_text.set("")
         elif button_text == 'DEL':
-            if self.display_text.get()[-1] == ')':
+            if self.display_text.get()[-1] == ')' and '(' in self.display_text.get():
                 in_paren_and_last = ''
                 open_paren = False
                 close_paren = False
-
                 for i in reversed(self.display_text.get()):
                     if i == ')':
                         close_paren = True
@@ -151,7 +149,6 @@ class CalculatorUI(tk.Tk):
                 self.display_text.set(in_paren_and_last)
             else:
                 self.display_text.set(self.display_text.get()[:-1])
-
         else:
             self.display_text.set(current_text + button_text)
 
