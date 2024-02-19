@@ -3,12 +3,13 @@ import tkinter as tk
 from tkinter import ttk
 from keypad import Keypad
 from controller import Controller
+from model import Model
 
 
 class CalculatorUI(tk.Tk):
     """CalculatorUI class represents the main calculator user interface."""
 
-    def __init__(self, controller=Controller()):
+    def __init__(self, controller: Controller):
         """Initialize the CalculatorUI."""
         super().__init__()
         self.equation = ''
@@ -18,6 +19,7 @@ class CalculatorUI(tk.Tk):
         self.controller = controller
         self.display_text = tk.StringVar()
         self.history_text = tk.StringVar()
+        self.model = Model()
         self.display_text.set("")
         self.init_display()
         self.init_math_combo()
@@ -115,8 +117,8 @@ class CalculatorUI(tk.Tk):
                 style.configure('Custom.TLabel', foreground='red')
                 self.bell()
             else:
-                self.controller.model.save(current_text, result)
-                history = self.controller.model.history[-1]
+                self.model.save(current_text, result)
+                history = self.model.history[-1]
                 self.history_combo_lst.append(history[0])
                 self.history_ans_lst.append(history[1])
 
