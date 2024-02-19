@@ -58,6 +58,8 @@ class CalculatorUI(tk.Tk):
         if function in ['exp', 'ln', 'log10', 'log2', 'sqrt']:
             if self.display_text.get()[-1:] in ['+', '-', '*', '^', '/']:
                 self.display_text.set(self.display_text.get() + function + '(')
+            elif self.display_text.get() == '':
+                self.display_text.set(self.display_text.get() + function + '(')
             else:
                 self.display_text.set(function + '(' + self.display_text.get() + ')')
 
@@ -94,10 +96,7 @@ class CalculatorUI(tk.Tk):
         button_text = event.widget['text']
         current_text = self.display_text.get()
         if button_text == '=':
-            print('current', current_text)
-            # for i in ['exp', 'ln', 'log10', 'log2', 'sqrt', '^']:
             self.handle_replace(current_text)
-            print(self.equation)
             result = self.controller.calculator(self.equation)
             s = ttk.Style()
             if isinstance(result, Exception):
