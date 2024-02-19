@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 
 
-class Keypad(tk.Frame):
+class Keypad(ttk.Frame):
     """Keypad widget for a calculator."""
 
     def __init__(self, parent, keynames=[], columns=1, **kwargs):

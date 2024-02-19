@@ -4,12 +4,13 @@ from tkinter import ttk
 from keypad import Keypad
 from controller import Controller
 from model import Model
+from controller import Controller
 
 
 class CalculatorUI(tk.Tk):
     """CalculatorUI class represents the main calculator user interface."""
 
-    def __init__(self, controller: Controller):
+    def __init__(self, controller=Controller()):
         """Initialize the CalculatorUI."""
         super().__init__()
         self.equation = ''
@@ -63,7 +64,7 @@ class CalculatorUI(tk.Tk):
         keypad_operator.grid(row=3, column=1, sticky='nsew', padx=5, pady=5)
         keypad_operator.bind('<Button-1>', self.handle_keypad_event)
 
-    def handle_combobox_event(self):
+    def handle_combobox_event(self, event):
         """Handle combobox event."""
         function = self.math_combo.get()
         current_text = self.display_text.get()
