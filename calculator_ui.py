@@ -136,7 +136,22 @@ class CalculatorUI(tk.Tk):
         elif button_text == 'CLR':
             self.display_text.set("")
         elif button_text == 'DEL':
-            self.display_text.set(current_text[:-1])
+            if self.display_text.get()[-1] == ')':
+                in_paren_and_last = ''
+                open_paren = False
+                close_paren = False
+
+                for i in reversed(self.display_text.get()):
+                    if i == ')':
+                        close_paren = True
+                    if i == '(':
+                        open_paren = True
+                    if close_paren and not open_paren and i != '(' and i != ')':
+                        in_paren_and_last = i + in_paren_and_last
+                self.display_text.set(in_paren_and_last)
+            else:
+                self.display_text.set(self.display_text.get()[:-1])
+
         else:
             self.display_text.set(current_text + button_text)
 
